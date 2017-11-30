@@ -14,6 +14,25 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function pyramid(n) {
+	const len = n * 2 - 1;
+	const mid = Math.floor(len / 2);
+	let level = 0;
+	let str = '';
+
+	while(level < n) {
+		for(let i = 0; i < len; i++) {
+			if(i < mid - level || i > mid + level) {
+				str += ' ';
+			} else {
+				str += '#';
+			}			
+		}
+
+		console.log(str);
+		level++;
+		str = '';
+	}
+}
 
 module.exports = pyramid;
