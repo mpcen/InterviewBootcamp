@@ -17,7 +17,6 @@
 
 function matrix(n) {
 	const results = [];
-	const numbers = n * n;
 	let count = 1;
 
 	for(let i = 0; i < n; i++) {
@@ -29,7 +28,7 @@ function matrix(n) {
 	let endRow = n - 1;
 	let endCol = n - 1;
 
-	while(count <= numbers) {
+	while(count <= n*n) {
 		for(let j = startCol; j <= endCol; j++) {
 			results[startRow][j] = count;
 			count++;
