@@ -184,6 +184,19 @@ class LinkedList {
 			counter += 1;
 		}
 	}
+
+	forEach(fn) {
+		let currentNode = this.head;
+		let counter = 0;
+
+		while(currentNode) {
+			fn(currentNode, counter);
+
+			currentNode = currentNode.next;
+
+			counter++;
+		}
+	}
 }
 
 module.exports = { Node, LinkedList };
