@@ -12,22 +12,76 @@
 // Answer: [1, 3, 2]
 
 function levelWidth(root) {
-	let arr = [root];
-	let widths = [1];
+	const childNodes = [root, 'end'];
+	const widths = [0];
 
-	while(arr.length) {
-		let childArr = [];
+	while(childNodes.length > 1) {
+		let node = childNodes.shift();		
 
-		arr.forEach(node => childArr.push(...node.children));
-
-		if(childArr.length) {
-			widths.push(childArr.length);
+		if(node !== 'end') {
+			widths[widths.length - 1]++
+			childNodes.push(...node.children);
+		} else {
+			childNodes.push(node);
+			widths.push(0);			
 		}
-
-		arr = childArr;
 	}
 
 	return widths;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// function levelWidth(root) {
+// 	let arr = [root];
+// 	let widths = [1];
+
+// 	while(arr.length) {
+// 		let childArr = [];
+
+// 		arr.forEach(node => childArr.push(...node.children));
+
+// 		if(childArr.length) {
+// 			widths.push(childArr.length);
+// 		}
+
+// 		arr = childArr;
+// 	}
+
+// 	return widths;
+// }
 
 module.exports = levelWidth;

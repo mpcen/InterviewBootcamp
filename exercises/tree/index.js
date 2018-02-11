@@ -23,51 +23,142 @@ class Node {
 	}
 
 	remove(data) {
-		this.children = this.children.filter(child => {
-			return child.data !== data
-		});
+		this.children = this.children.filter(node => node.data !== data);
 	}
 }
 
 class Tree {
-	constructor(root = null) {
-		this.root = root;
-	}	
+	constructor() {
+		this.root = null;
+	}
 
 	traverseBF(fn) {
-		const nodes = [this.root];
+		const childNodes = [this.root];
 
-		while(nodes.length) {
-			if(nodes[0].children.length) {
-				nodes.push(...nodes[0].children);
+		while(childNodes.length) {
+			const parentNode = childNodes.shift();
+
+			if(parentNode.children.length) {
+				childNodes.push(...parentNode.children);
 			}
 
-			fn(nodes[0]);
-
-			nodes.shift();
+			fn(parentNode);
 		}
 	}
 
 	traverseDF(fn) {
-		const nodes = [this.root];
+		const childNodes = [this.root];
 
-		while(nodes.length) {
-			let childrenToAdd = [];
+		while(childNodes.length) {
+			const parentNode = childNodes.shift();
 
-			if(nodes[0].children.length) {							
-				childrenToAdd.push(...nodes[0].children);
+			if(parentNode.children.length) {
+				childNodes.unshift(...parentNode.children);
 			}
 
-			fn(nodes[0]);
-
-			nodes.shift();
-
-			nodes.unshift(...childrenToAdd);
+			fn(parentNode);
 		}
 	}
 }
 
 module.exports = { Tree, Node };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// class Node {
+// 	constructor(data) {
+// 		this.data = data;
+// 		this.children = [];
+// 	}
+
+// 	add(data) {
+// 		this.children.push(new Node(data))
+// 	}
+
+// 	remove(data) {
+// 		this.children = this.children.filter(child => {
+// 			return child.data !== data
+// 		});
+// 	}
+// }
+
+// class Tree {
+// 	constructor(root = null) {
+// 		this.root = root;
+// 	}	
+
+// 	traverseBF(fn) {
+// 		const nodes = [this.root];
+
+// 		while(nodes.length) {
+// 			if(nodes[0].children.length) {
+// 				nodes.push(...nodes[0].children);
+// 			}
+
+// 			fn(nodes[0]);
+
+// 			nodes.shift();
+// 		}
+// 	}
+
+// 	traverseDF(fn) {
+// 		const nodes = [this.root];
+
+// 		while(nodes.length) {
+// 			let childrenToAdd = [];
+
+// 			if(nodes[0].children.length) {							
+// 				childrenToAdd.push(...nodes[0].children);
+// 			}
+
+// 			fn(nodes[0]);
+
+// 			nodes.shift();
+
+// 			nodes.unshift(...childrenToAdd);
+// 		}
+// 	}
+// }
+
+
 
 
 
